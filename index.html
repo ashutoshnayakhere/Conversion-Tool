@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Tool</title>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #e0e0e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #e0e0e0;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+        text-align: center;
+        width: 300px;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .dropdown, .input-section {
+        margin-bottom: 20px;
+    }
+
+    select, input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: #e0e0e0;
+        box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+        font-size: 16px;
+        outline: none;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-top:25px;
+      
+        background-color: #e0e0e0;
+        color: #007bff;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        box-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+    }
+
+    button:active {
+        box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #333;
+    }
+</style>
+
+
+  
+</head>
+<body>
+    <div class="container">
+        <h1>Conversion Tool</h1>
+        <div class="dropdown">
+            <label for="conversion-type">Choose a conversion:</label>
+            <select id="conversion-type">
+                <option value="ftoc">Fahrenheit to Celsius</option>
+                <option value="mtokm">Meters to Kilometers</option>
+            </select>
+        </div>
+        <div class="input-section">
+            <input type="number" id="input-value" placeholder="Enter value">
+            <button id="convert-btn">Convert</button>
+        </div>
+        <div class="result">
+            <p id="result-output"></p>
+        </div>
+    </div>
+
+    <script >
+  document.getElementById('convert-btn').addEventListener('click', function() {
+    const conversionType = document.getElementById('conversion-type').value;
+    const inputValue = parseFloat(document.getElementById('input-value').value);
+    let result;
+
+    if (isNaN(inputValue)) {
+        result = "Please enter a valid number";
+    } else {
+        if (conversionType === 'ftoc') {
+            // Fahrenheit to Celsius
+            result = ((inputValue - 32) * 5 / 9).toFixed(2) + " °C";
+        } else if (conversionType === 'mtokm') {
+            // Meters to Kilometers
+            result = (inputValue / 1000).toFixed(2) + " km";
+        }
+    }
+
+    document.getElementById('result-output').textContent = result;
+});
+
+  </script>
+</body>
+</html>
